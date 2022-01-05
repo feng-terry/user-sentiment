@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Typography, CardMedia, Box, Card } from '@mui/material'
+import neutral from '../images/neutral.png'
+import frown from '../images/frown.png'
 
 export default function OverallSentiment (props){
     const [value, setValue] = useState(0)
@@ -27,14 +29,14 @@ export default function OverallSentiment (props){
                     (type === 'negative'?
                         <CardMedia
                             component="img"
-                            sx={{ width: 175 }}
-                            image="https://lh3.googleusercontent.com/proxy/3nygTxjPc1iM-Sk1OC97HMwTs6BrV20nKlM0Vxg8QyI6vgShWl3H4-VZcTh4Vu9tbLnFVPInRHFQocUkQmhNlwmxkf7qvcM"
+                            sx={{ width: 200 }}
+                            image={frown}
                             alt="Frown Face"
                         />:
                         <CardMedia
                             component="img"
                             sx={{ width: 175 }}
-                            image="https://lh3.googleusercontent.com/proxy/XT1yvpkNAaee8VvJ5RtEtau2zOb_tXXvzrGr19WIFKk8KsJ5fm604HK82lgrRpX6DbI-Tvfr9krAvXminFIEMGut"
+                            image={neutral}
                             alt="Neutral Face"
                         />
                     )
