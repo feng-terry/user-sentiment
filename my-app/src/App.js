@@ -1,27 +1,30 @@
 import './App.css';
-import React, {useState,useEffect} from 'react'
-import {callBackendAPI} from './services/testService'
+import React, {useState} from 'react'
 import UserInput from './components/UserInput'
+import CommentList from './components/CommentList';
+import OverallSentiment from './components/OverallSentiment';
+import { Typography } from '@mui/material'
 
 function App() {
-  const [data, setData] = useState('null');
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    callBackendAPI()
-      .then(res => {
-        setData(res.express)
-      })
-      .catch(err => console.log(err));
-  });
+  const [userComments, setUserComments] = useState(null);
+  const [overallScore, setOverallScore] = useState(0);
+  const [overallComments, setOverallComments] = useState(0);
 
   return (
     <div className="App">
-      <p>
-        {data}
-      </p>
-      <UserInput setUser = {setUser}/>
-      {user? "Pog":null}
+      <Typography component="div" variant="h2">
+        Sentiment Analyzer for Reddit
+      </Typography>
+      <OverallSentiment overallScore = {overallScore} overallComments = {overallComments}/>
+      <UserInput setUserComments = {setUserComments} setOverallScore = {setOverallScore} setOverallComments = {setOverallComments}/>
+      {userComments? 
+        <CommentList 
+          userComments = {userComments}
+          overallScore = {overallScore} 
+          setOverallScore = {setOverallScore}
+          setOverallComments = {setOverallComments}
+        />
+        :'Please specify a valid Reddit user'}
     </div>
   );
 }
